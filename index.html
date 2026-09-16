@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digigraph — Especialistas en Vending, Rótulos y Comunicación Visual</title>
+<meta name="description" content="Digigraph: más de 25 años diseñando, fabricando e instalando rotulación de vending, rótulos, vinilos e impresión digital de gran formato para empresas de toda España.">
+<style>
+  :root {
+    --naranja: #e8601c;
+    --naranja-osc: #c94f14;
+    --negro: #17181a;
+    --antracita: #2b2c2e;
+    --gris: #666;
+    --gris-claro: #f4f4f2;
+    --borde: #e4e2dd;
+    --blanco: #ffffff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: var(--negro);
+    background: var(--blanco);
+    line-height: 1.6;
+  }
+  a { color: inherit; }
+  img { max-width: 100%; display: block; }
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+
+  /* Fotos reales aportadas por el cliente en assets/fotos/.
+     data-real="true" indica que ya NO son placeholder. */
+
+  /* ---------- HEADER ---------- */
+  header {
+    position: sticky;
+    top: 0;
+    background: rgba(255,255,255,0.98);
+    border-bottom: 1px solid var(--borde);
+    z-index: 100;
+  }
+  .top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    gap: 24px;
+  }
+  .logo img { height: 40px; }
+  nav.main-nav ul {
+    display: flex;
+    gap: 26px;
+    list-style: none;
+    flex-wrap: wrap;
+  }
+  nav.main-nav ul.open {
+    display: flex;
+  }
+  nav.main-nav ul li a {
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    color: var(--negro);
+    text-transform: uppercase;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+  }
+  nav.main-nav ul li a:hover,
+  nav.main-nav ul li a.active { color: var(--naranja); border-bottom-color: var(--naranja); }
+  .top-actions {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .top-actions .tel {
+    display: flex;
+    gap: 14px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--antracita);
+    white-space: nowrap;
+  }
+  .btn {
+    display: inline-block;
+    background: var(--naranja);
+    color: #fff;
+    padding: 12px 22px;
+    border-radius: 3px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: background 0.2s;
+    border: none;
+    cursor: pointer;
+  }
+  .btn:hover { background: var(--naranja-osc); }
+  .btn-outline {
+    background: transparent;
+    color: var(--negro);
+    border: 1.5px solid var(--negro);
+  }
+  .btn-outline:hover { background: var(--negro); color: #fff; }
+  .btn-white-outline {
+    background: transparent;
+    border: 1.5px solid #fff;
+    color: #fff;
+  }
+  .btn-white-outline:hover { background: rgba(255,255,255,0.12); }
+
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    position: relative;
+    min-height: 560px;
+    display: flex;
+    align-items: center;
+    background: var(--negro);
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(10,10,10,0.94) 20%, rgba(10,10,10,0.55) 60%, rgba(10,10,10,0.25) 100%);
+    z-index: 1;
+  }
+  .hero img.bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+    max-width: 640px;
+    padding: 60px 24px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .hero-content .eyebrow-line { width: 60px; height: 3px; background: var(--naranja); margin-bottom: 20px; }
+  .hero-content h1 {
+    font-size: clamp(1.9rem, 4.2vw, 3.1rem);
+    font-weight: 800;
+    line-height: 1.15;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+  }
+  .hero-content h1 span { color: var(--naranja); }
+  .hero-content p {
+    font-size: 1.08rem;
+    margin-bottom: 32px;
+    color: #ddd;
+    max-width: 500px;
+  }
+  .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+
+  /* ---------- TRUST STRIP ---------- */
+  .trust-strip {
+    background: #fff;
+    border-bottom: 1px solid var(--borde);
+    padding: 26px 24px;
+  }
+  .trust-grid {
+    max-width: 1240px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+  }
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .trust-item .ic {
+    width: 40px; height: 40px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    border: 1.5px solid var(--naranja);
+    color: var(--naranja);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+  }
+  .trust-item .txt { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; line-height: 1.3; color: var(--antracita); }
+
+  /* ---------- SOLUTIONS ---------- */
+  section { padding: 90px 24px; }
+  .section-head { text-align: center; margin-bottom: 50px; }
+  .section-head .eyebrow {
+    color: var(--naranja);
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .section-head h2 { font-size: 2.1rem; }
+  .section-head h2 span { color: var(--naranja); }
+  .section-head p { color: var(--gris); max-width: 620px; margin: 14px auto 0; }
+
+  .soluciones { background: var(--gris-claro); }
+  .grid-solutions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .sol-card {
+    background: #fff;
+    border: 1px solid var(--borde);
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .sol-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,0,0,0.08); }
+  .sol-card .foto {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+  }
+  .sol-card .foto img { width: 100%; height: 100%; object-fit: cover; }
+  .sol-card .badge {
+    position: absolute;
+    bottom: -20px; left: 20px;
+    width: 44px; height: 44px;
+    background: var(--naranja);
+    border-radius: 50%;
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    border: 3px solid #fff;
+  }
+  .sol-card .info { padding: 34px 22px 22px; }
+  .sol-card h3 { font-size: 1.15rem; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 0.3px; }
+  .sol-card p { color: var(--gris); font-size: 0.94rem; margin-bottom: 14px; }
+  .sol-card .saber-mas { color: var(--naranja); font-weight: 700; font-size: 0.85rem; text-decoration: none; text-transform: uppercase; }
+  .sol-card .saber-mas:hover { text-decoration: underline; }
+
+  /* ---------- VENDING HIGHLIGHT ---------- */
+  .vending-hl {
+    background: var(--negro);
+    color: #fff;
+  }
+  .vending-hl-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .vending-hl .foto { aspect-ratio: 4 / 3; overflow: hidden; border: 4px solid var(--naranja); }
+  .vending-hl .foto img { width: 100%; height: 100%; object-fit: cover; }
+  .vending-hl-text .eyebrow { color: var(--naranja); font-weight: 700; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; }
+  .vending-hl-text h2 { font-size: 2rem; margin: 12px 0 18px; text-transform: uppercase; }
+  .vending-hl-text p { color: #ccc; margin-bottom: 16px; }
+  .vending-hl-text ul { list-style: none; margin-bottom: 26px; }
+  .vending-hl-text ul li { padding: 6px 0; color: #ddd; }
+  .vending-hl-text ul li::before { content: "— "; color: var(--naranja); }
+
+  /* ---------- SECTORES ---------- */
+  .sectores { background: var(--antracita); color: #fff; padding: 44px 24px; }
+  .sectores-inner { max-width: 1240px; margin: 0 auto; }
+  .sectores h4 { text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; color: #aaa; margin-bottom: 22px; text-align: center; }
+  .sectores-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 34px;
+  }
+  .sector-item { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; color: #eee; }
+  .sector-item .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--naranja); }
+
+  /* ---------- NOSOTROS ---------- */
+  .nosotros { background: #fff; }
+  .nosotros-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+  .nosotros .foto { aspect-ratio: 4/3; overflow: hidden; }
+  .nosotros .foto img { width: 100%; height: 100%; object-fit: cover; }
+  .nosotros-text h2 { text-align: left; font-size: 2rem; margin-bottom: 18px; }
+  .nosotros-text p { color: var(--gris); margin-bottom: 16px; }
+  .stat-row { display: flex; gap: 40px; margin-top: 24px; }
+  .stat-row .stat strong { font-size: 2.2rem; color: var(--naranja); display: block; }
+  .stat-row .stat span { font-size: 0.82rem; color: var(--gris); text-transform: uppercase; }
+
+  /* ---------- CONTACTO ---------- */
+  .contacto { background: var(--gris-claro); text-align: center; }
+  .contacto-info {
+    display: flex;
+    justify-content: center;
+    gap: 56px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+  }
+  .contacto-info div { min-width: 200px; }
+  .contacto-info h4 {
+    color: var(--naranja);
+    margin-bottom: 6px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .contacto-info p { color: var(--antracita); }
+
+  footer {
+    background: var(--negro);
+    color: #999;
+    text-align: center;
+    padding: 28px 24px;
+    font-size: 0.85rem;
+  }
+  footer a { color: #999; text-decoration: underline; }
+  footer span { color: var(--naranja); }
+
+  @media (max-width: 980px) {
+    .trust-grid { grid-template-columns: repeat(2, 1fr); }
+    .grid-solutions { grid-template-columns: repeat(2, 1fr); }
+    .vending-hl-grid, .nosotros-grid { grid-template-columns: 1fr; }
+    .nav-toggle { display: block; }
+    nav.main-nav ul {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      gap: 0;
+      background: #fff;
+      border-bottom: 1px solid var(--borde);
+      padding: 8px 0;
+    }
+    nav.main-nav ul li a {
+      display: block;
+      padding: 12px 24px;
+    }
+    .top-bar { position: relative; }
+  }
+
+  @media (max-width: 640px) {
+    .top-actions .tel { display: none; }
+    .grid-solutions { grid-template-columns: 1fr; }
+    section { padding: 56px 20px; }
+    .hero { min-height: 460px; }
+    .stat-row { gap: 24px; flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="top-bar">
+    <a href="#inicio" class="logo"><img src="assets/digigraph_logo2023-tarjeta-sin-pagina-web-2025-IA-ya.gif" alt="Digigraph — Rotulación e Impresión Digital"></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="#inicio" class="active">Inicio</a></li>
+        <li><a href="#vending">Vending</a></li>
+        <li><a href="#rotulos">Rótulos</a></li>
+        <li><a href="#rotulacion">Rotulación</a></li>
+        <li><a href="#impresion">Impresión Digital</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+    <div class="top-actions">
+      <div class="tel">
+        <span>📞 93 627 22 18</span>
+        <span>💬 609 48 18 03</span>
+      </div>
+      <a href="#contacto" class="btn">Solicitar presupuesto</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="inicio" style="padding:0;">
+  <img class="bg" data-placeholder="true" src="https://images.unsplash.com/photo-1706895040634-62055892cbbb?w=1800&h=1000&fit=crop&auto=format" alt="Plotter de impresión digital de gran formato">
+  <div class="hero-content">
+    <div class="eyebrow-line"></div>
+    <h1>Especialistas en <span>vending, rótulos</span> y comunicación visual</h1>
+    <p>Más de 25 años diseñando, fabricando e instalando soluciones de rotulación e impresión digital para empresas, comercios y profesionales de toda España.</p>
+    <div class="hero-ctas">
+      <a href="#contacto" class="btn">Solicitar presupuesto</a>
+      <a href="#soluciones" class="btn btn-white-outline">Ver proyectos</a>
+    </div>
+  </div>
+</section>
+
+<div class="trust-strip">
+  <div class="trust-grid">
+    <div class="trust-item"><div class="ic">25+</div><div class="txt">Años de<br>experiencia</div></div>
+    <div class="trust-item"><div class="ic">✎</div><div class="txt">Diseño, fabricación<br>e instalación</div></div>
+    <div class="trust-item"><div class="ic">✓</div><div class="txt">Materiales de<br>primera calidad</div></div>
+    <div class="trust-item"><div class="ic">⚑</div><div class="txt">Cobertura<br>nacional</div></div>
+    <div class="trust-item"><div class="ic">⏱</div><div class="txt">Atención personalizada<br>y plazos cumplidos</div></div>
+  </div>
+</div>
+
+<section class="soluciones" id="soluciones">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Qué hacemos</span>
+      <h2>Nuestras <span>soluciones</span></h2>
+      <p>Cinco áreas de trabajo, una misma exigencia: precisión en cada acabado.</p>
+    </div>
+    <div class="grid-solutions">
+
+      <div class="sol-card" id="vending-card">
+        <div class="foto">
+          <img data-real="true" src="assets/fotos/02_vending.jpg" alt="Máquina de vending en oficina, ambiente premium">
+
+          <div class="badge">☕</div>
+        </div>
+        <div class="info">
+          <h3>Vending</h3>
+          <p>Rotulación integral de máquinas vending. Vinilos de alta resistencia y personalización para operadores y fabricantes.</p>
+          <a href="#vending" class="saber-mas">Saber más →</a>
+        </div>
+      </div>
+
+      <div class="sol-card" id="rotulos-card">
+        <div class="foto">
+          <img data-placeholder="true" src="https://images.unsplash.com/photo-1676917824872-83f2fa04898b?w=800&h=500&fit=crop&auto=format" alt="Rótulo luminoso">
+          <div class="badge">A</div>
+        </div>
+        <div class="info">
+          <h3>Rótulos</h3>
+          <p>Rótulos luminosos, letras corpóreas, bandejas, cajones de luz, tótems y señalización interior y exterior.</p>
+          <a href="#rotulos" class="saber-mas">Saber más →</a>
+        </div>
+      </div>
+
+      <div class="sol-card" id="rotulacion-card">
+        <div class="foto">
+          <img data-placeholder="true" src="https://images.unsplash.com/photo-1646531840695-62810bcd1171?w=800&h=500&fit=crop&auto=format" alt="Trabajo de rotulación y vinilado de vehículos">
+          <div class="badge">🚐</div>
+        </div>
+        <div class="info">
+          <h3>Rotulación</h3>
+          <p>Rotulación de vehículos, flotas, escaparates, oficinas, naves industriales y todo tipo de espacios comerciales.</p>
+          <a href="#rotulacion" class="saber-mas">Saber más →</a>
+        </div>
+      </div>
+
+      <div class="sol-card" id="impresion-card">
+        <div class="foto">
+          <img data-real="true" src="assets/fotos/05_impresion_digital.jpg" alt="Impresión digital de gran formato a todo color">
+          <div class="badge">🖨</div>
+        </div>
+        <div class="info">
+          <h3>Impresión digital</h3>
+          <p>Impresión de gran formato sobre vinilos, lonas, papeles, PVC, Dibond, metacrilato y muchos otros materiales.</p>
+          <a href="#impresion" class="saber-mas">Saber más →</a>
+        </div>
+      </div>
+
+      <div class="sol-card" id="vinilos-card">
+        <div class="foto">
+          <img data-placeholder="true" src="https://images.unsplash.com/photo-1746021375306-9dec0f637732?w=800&h=500&fit=crop&auto=format" alt="Vinilos decorativos para oficinas">
+          <div class="badge">▦</div>
+        </div>
+        <div class="info">
+          <h3>Vinilos decorativos</h3>
+          <p>Vinilos para cristales, paredes, oficinas y decoración. Diseños personalizados para interiores y exteriores.</p>
+          <a href="#contacto" class="saber-mas">Saber más →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="vending-hl" id="vending">
+  <div class="container vending-hl-grid">
+    <div class="foto">
+      <img data-real="true" src="assets/fotos/02_vending.jpg" alt="Máquina de vending en oficina, ambiente premium">
+    </div>
+    <div class="vending-hl-text">
+      <span class="eyebrow">Sector Vending</span>
+      <h2>Rotulación especializada para máquinas de vending</h2>
+      <p>Trabajamos con operadores y fabricantes del sector vending en la personalización e imagen de sus máquinas expendedoras, con acabados resistentes al uso diario e intensivo.</p>
+      <ul>
+        <li>Vinilado y forrado completo de máquinas expendedoras</li>
+        <li>Adhesivos de producto y frontales luminosos</li>
+        <li>Rotulación de flotas y furgonetas de reparto</li>
+        <li>Renovación de imagen para parques de máquinas existentes</li>
+      </ul>
+      <a href="#contacto" class="btn">Hablemos de tu proyecto de vending</a>
+    </div>
+  </div>
+</section>
+
+<section class="soluciones" id="rotulos" style="padding-top:70px;">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Rótulos</span>
+      <h2>Rótulos que <span>se ven</span> y se recuerdan</h2>
+      <p>Letras corpóreas, cajones de luz, tótems y rótulos luminosos fabricados a medida para tu local o negocio.</p>
+    </div>
+  </div>
+</section>
+
+<section class="soluciones" id="rotulacion" style="padding-top:0;">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Rotulación</span>
+      <h2>Rotulación de <span>vehículos y espacios</span></h2>
+      <p>Rotulación de flotas, escaparates, oficinas y naves industriales, con instalación propia y acabado profesional.</p>
+    </div>
+  </div>
+</section>
+
+<section class="soluciones" id="impresion" style="padding-top:0;">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Impresión Digital</span>
+      <h2>Impresión de <span>gran formato</span></h2>
+      <p>Lonas, vinilos, PVC, Dibond y metacrilato impresos con la máxima calidad de color y acabado.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sectores">
+  <div class="sectores-inner">
+    <h4>Sectores a los que damos servicio</h4>
+    <div class="sectores-grid">
+      <div class="sector-item"><span class="dot"></span>Vending</div>
+      <div class="sector-item"><span class="dot"></span>Comercios</div>
+      <div class="sector-item"><span class="dot"></span>Oficinas</div>
+      <div class="sector-item"><span class="dot"></span>Franquicias</div>
+      <div class="sector-item"><span class="dot"></span>Industria</div>
+      <div class="sector-item"><span class="dot"></span>Hostelería</div>
+      <div class="sector-item"><span class="dot"></span>Centros deportivos</div>
+      <div class="sector-item"><span class="dot"></span>Clínicas</div>
+      <div class="sector-item"><span class="dot"></span>Automoción</div>
+    </div>
+  </div>
+</section>
+
+<section class="nosotros" id="nosotros">
+  <div class="container nosotros-grid">
+    <div class="foto">
+      <img data-real="true" src="assets/fotos/05_impresion_digital.jpg" alt="Impresión digital de gran formato a todo color">
+    </div>
+    <div class="nosotros-text">
+      <span class="eyebrow" style="color:var(--naranja); font-weight:700; text-transform:uppercase; font-size:0.85rem;">Quiénes somos</span>
+      <h2>Más de 25 años dando forma a la imagen de marca de nuestros clientes</h2>
+      <p>Somos un taller especializado en rotulación e impresión digital, con sede en L'Hospitalet de Llobregat (Barcelona). Ayudamos a empresas, comercios y profesionales de toda España a comunicar mejor su marca a través de soluciones físicas de comunicación visual.</p>
+      <p>Combinamos tecnología de impresión de gran formato con un trabajo cuidado de acabado e instalación, para que cada proyecto se ejecute con la máxima precisión.</p>
+      <div class="stat-row">
+        <div class="stat"><strong>25+</strong><span>Años de experiencia</span></div>
+        <div class="stat"><strong>100%</strong><span>Diseño y fabricación propia</span></div>
+        <div class="stat"><strong>España</strong><span>Cobertura nacional</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contacto" id="contacto">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Contacto</span>
+      <h2>Hablemos de tu <span>proyecto</span></h2>
+      <p>¿Tienes un proyecto de rotulación, vending o impresión digital? Escríbenos y te asesoramos sin compromiso.</p>
+    </div>
+    <div class="contacto-info">
+      <div>
+        <h4>Dirección</h4>
+        <p>Calle Saurí, 13 Local 1<br>08901 L'Hospitalet de Llobregat<br>(Barcelona)</p>
+      </div>
+      <div>
+        <h4>Teléfono</h4>
+        <p>93 627 22 18<br>Móvil / WhatsApp: 609 48 18 03</p>
+      </div>
+      <div>
+        <h4>Email</h4>
+        <p><a href="mailto:comercial@digigraphbcn.com">comercial@digigraphbcn.com</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 <span>Digigraph</span>. Todos los derechos reservados. — <a href="#">Aviso Legal</a>
+</footer>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navMenu = document.querySelector('nav.main-nav ul');
+  navToggle.addEventListener('click', () => {
+    const isOpen = navMenu.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+  navMenu.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A') {
+      navMenu.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  const links = document.querySelectorAll('nav.main-nav a');
+  const sections = Array.from(links).map(a => document.querySelector(a.getAttribute('href')));
+  window.addEventListener('scroll', () => {
+    let current = sections[0];
+    sections.forEach(sec => {
+      if (sec && window.scrollY >= sec.offsetTop - 120) current = sec;
+    });
+    links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current.id));
+  });
+</script>
+
+</body>
+</html>
