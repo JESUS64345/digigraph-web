@@ -25,6 +25,7 @@
     line-height: 1.6;
   }
   a { color: inherit; }
+  section[id] { scroll-margin-top: 172px; }
   img { max-width: 100%; display: block; }
   .container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
 
@@ -45,28 +46,36 @@
     justify-content: space-between;
     max-width: 1240px;
     margin: 0 auto;
-    padding: 14px 24px;
+    padding: 18px 24px;
     gap: 24px;
   }
   .logo { flex-shrink: 0; }
-  .logo img { height: 40px; width: auto; flex-shrink: 0; }
+  .logo img { height: 85px; width: auto; flex-shrink: 0; }
+  .nav-bar {
+    border-top: 1px solid var(--borde);
+    background: var(--gris-claro);
+  }
+  nav.main-nav {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
   nav.main-nav ul {
     display: flex;
-    gap: 26px;
+    justify-content: center;
+    gap: 30px;
     list-style: none;
     flex-wrap: wrap;
   }
-  nav.main-nav ul.open {
-    display: flex;
-  }
   nav.main-nav ul li a {
+    display: inline-block;
     text-decoration: none;
     font-size: 0.88rem;
     font-weight: 700;
     letter-spacing: 0.3px;
     color: var(--negro);
     text-transform: uppercase;
-    padding-bottom: 4px;
+    padding: 13px 0 11px;
     border-bottom: 2px solid transparent;
   }
   nav.main-nav ul li a:hover,
@@ -236,6 +245,70 @@
     overflow: hidden;
   }
   .sol-card .foto img { width: 100%; height: 100%; object-fit: cover; }
+  .foto-carrusel .carrusel-img {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+  .foto-carrusel .carrusel-img.is-active { opacity: 1; }
+
+  /* ---------- LIGHTBOX GALERÍA ---------- */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10,10,10,0.92);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .lightbox.is-open { display: flex; }
+  .lightbox-content {
+    position: relative;
+    max-width: 1000px;
+    width: 100%;
+  }
+  .lightbox-content img {
+    width: 100%;
+    max-height: 78vh;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+  .lightbox-close {
+    position: absolute;
+    top: -44px;
+    right: 0;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .lightbox-prev, .lightbox-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.15);
+    border: none;
+    color: #fff;
+    font-size: 1.6rem;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .lightbox-prev { left: 12px; }
+  .lightbox-next { right: 12px; }
+  .lightbox-prev:hover, .lightbox-next:hover { background: var(--naranja); }
+  .lightbox-counter {
+    text-align: center;
+    color: #ccc;
+    margin-top: 14px;
+    font-size: 0.85rem;
+  }
   .sol-card .badge {
     position: absolute;
     bottom: -20px; left: 20px;
@@ -330,27 +403,24 @@
     .trust-grid { grid-template-columns: repeat(2, 1fr); }
     .grid-solutions { grid-template-columns: repeat(2, 1fr); }
     .vending-hl-grid, .nosotros-grid { grid-template-columns: 1fr; }
+    section[id] { scroll-margin-top: 130px; }
     .nav-toggle { display: block; }
+    .nav-bar { display: none; }
+    .nav-bar.open { display: block; }
     nav.main-nav ul {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
       flex-direction: column;
       gap: 0;
-      background: #fff;
-      border-bottom: 1px solid var(--borde);
       padding: 8px 0;
     }
     nav.main-nav ul li a {
       display: block;
-      padding: 12px 24px;
+      padding: 12px 0;
     }
-    .top-bar { position: relative; }
   }
 
   @media (max-width: 640px) {
+    .logo img { height: 65px; }
+    section[id] { scroll-margin-top: 110px; }
     .top-actions .tel { display: none; }
     .grid-solutions { grid-template-columns: 1fr; }
     section { padding: 56px 20px; }
@@ -364,7 +434,16 @@
 <header>
   <div class="top-bar">
     <a href="#inicio" class="logo"><img src="assets/digigraph_logo2023-tarjeta-sin-pagina-web-2025-IA-ya.gif" alt="Digigraph — Rotulación e Impresión Digital"></a>
-    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <div class="top-actions">
+      <div class="tel">
+        <span>📞 93 627 22 18</span>
+        <span>💬 609 48 18 03</span>
+      </div>
+      <a href="#contacto" class="btn">Solicitar presupuesto</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    </div>
+  </div>
+  <div class="nav-bar">
     <nav class="main-nav">
       <ul>
         <li><a href="#inicio" class="active">Inicio</a></li>
@@ -376,13 +455,6 @@
         <li><a href="#contacto">Contacto</a></li>
       </ul>
     </nav>
-    <div class="top-actions">
-      <div class="tel">
-        <span>📞 93 627 22 18</span>
-        <span>💬 609 48 18 03</span>
-      </div>
-      <a href="#contacto" class="btn">Solicitar presupuesto</a>
-    </div>
   </div>
 </header>
 
@@ -444,14 +516,16 @@
       </div>
 
       <div class="sol-card" id="rotulacion-card">
-        <div class="foto">
-          <img data-placeholder="true" src="https://images.unsplash.com/photo-1646531840695-62810bcd1171?w=800&h=500&fit=crop&auto=format" alt="Trabajo de rotulación y vinilado de vehículos">
+        <div class="foto foto-carrusel">
+          <img data-real="true" class="carrusel-img is-active" src="assets/fotos/04_rotulacion_1.png" alt="Rotulación de vehículos — furgoneta Rhea Apliven, vista trasera">
+          <img data-real="true" class="carrusel-img" src="assets/fotos/04_rotulacion_2.png" alt="Rotulación de vehículos — furgoneta Rhea Apliven, lateral">
+          <img data-real="true" class="carrusel-img" src="assets/fotos/04_rotulacion_3.png" alt="Rotulación de vehículos — furgoneta Rhea Apliven, lateral">
           <div class="badge">🚐</div>
         </div>
         <div class="info">
           <h3>Rotulación</h3>
           <p>Rotulación de vehículos, flotas, escaparates, oficinas, naves industriales y todo tipo de espacios comerciales.</p>
-          <a href="#rotulacion" class="saber-mas">Saber más →</a>
+          <a href="#" class="saber-mas abrir-galeria" data-galeria="rotulacion">Saber más →</a>
         </div>
       </div>
 
@@ -597,16 +671,92 @@
   &copy; 2026 <span>Digigraph</span>. Todos los derechos reservados. — <a href="#">Aviso Legal</a>
 </footer>
 
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-content">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar">✕</button>
+    <img id="lightboxImg" src="" alt="">
+    <button class="lightbox-prev" id="lightboxPrev" aria-label="Anterior">‹</button>
+    <button class="lightbox-next" id="lightboxNext" aria-label="Siguiente">›</button>
+    <div class="lightbox-counter" id="lightboxCounter"></div>
+  </div>
+</div>
+
+<script>
+  const galerias = {
+    rotulacion: [
+      { src: 'assets/fotos/04_rotulacion_1.png', alt: 'Rotulación de vehículos — furgoneta Rhea Apliven, vista trasera' },
+      { src: 'assets/fotos/04_rotulacion_2.png', alt: 'Rotulación de vehículos — furgoneta Rhea Apliven, lateral' },
+      { src: 'assets/fotos/04_rotulacion_3.png', alt: 'Rotulación de vehículos — furgoneta Rhea Apliven, lateral' }
+    ]
+  };
+  let galeriaActual = [];
+  let galeriaIndex = 0;
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxCounter = document.getElementById('lightboxCounter');
+
+  function mostrarGaleriaImg() {
+    const item = galeriaActual[galeriaIndex];
+    lightboxImg.src = item.src;
+    lightboxImg.alt = item.alt;
+    lightboxCounter.textContent = (galeriaIndex + 1) + ' / ' + galeriaActual.length;
+  }
+  function abrirLightbox(nombre) {
+    galeriaActual = galerias[nombre];
+    if (!galeriaActual) return;
+    galeriaIndex = 0;
+    mostrarGaleriaImg();
+    lightbox.classList.add('is-open');
+  }
+  function cerrarLightbox() { lightbox.classList.remove('is-open'); }
+
+  document.querySelectorAll('.abrir-galeria').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      abrirLightbox(link.getAttribute('data-galeria'));
+    });
+  });
+  document.getElementById('lightboxClose').addEventListener('click', cerrarLightbox);
+  document.getElementById('lightboxPrev').addEventListener('click', () => {
+    galeriaIndex = (galeriaIndex - 1 + galeriaActual.length) % galeriaActual.length;
+    mostrarGaleriaImg();
+  });
+  document.getElementById('lightboxNext').addEventListener('click', () => {
+    galeriaIndex = (galeriaIndex + 1) % galeriaActual.length;
+    mostrarGaleriaImg();
+  });
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) cerrarLightbox();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('is-open')) return;
+    if (e.key === 'Escape') cerrarLightbox();
+    if (e.key === 'ArrowLeft') document.getElementById('lightboxPrev').click();
+    if (e.key === 'ArrowRight') document.getElementById('lightboxNext').click();
+  });
+
+  document.querySelectorAll('.foto-carrusel').forEach(carrusel => {
+    const imgs = carrusel.querySelectorAll('.carrusel-img');
+    if (imgs.length < 2) return;
+    let i = 0;
+    setInterval(() => {
+      imgs[i].classList.remove('is-active');
+      i = (i + 1) % imgs.length;
+      imgs[i].classList.add('is-active');
+    }, 3500);
+  });
+</script>
+
 <script>
   const navToggle = document.getElementById('navToggle');
-  const navMenu = document.querySelector('nav.main-nav ul');
+  const navBar = document.querySelector('.nav-bar');
   navToggle.addEventListener('click', () => {
-    const isOpen = navMenu.classList.toggle('open');
+    const isOpen = navBar.classList.toggle('open');
     navToggle.setAttribute('aria-expanded', isOpen);
   });
-  navMenu.addEventListener('click', (e) => {
+  navBar.addEventListener('click', (e) => {
     if (e.target.tagName === 'A') {
-      navMenu.classList.remove('open');
+      navBar.classList.remove('open');
       navToggle.setAttribute('aria-expanded', 'false');
     }
   });
