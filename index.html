@@ -241,6 +241,9 @@
   .sol-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,0,0,0.08); }
   .sol-card .foto {
     position: relative;
+  }
+  .sol-card .foto-clip {
+    position: relative;
     aspect-ratio: 16 / 10;
     overflow: hidden;
   }
@@ -492,8 +495,9 @@
 
       <div class="sol-card" id="vending-card">
         <div class="foto">
-          <img data-real="true" src="assets/fotos/02_vending.jpg" alt="Máquina de vending en oficina, ambiente premium">
-
+          <div class="foto-clip">
+            <img data-real="true" src="assets/fotos/02_vending.jpg" alt="Máquina de vending en oficina, ambiente premium">
+          </div>
           <div class="badge">☕</div>
         </div>
         <div class="info">
@@ -505,7 +509,9 @@
 
       <div class="sol-card" id="rotulos-card">
         <div class="foto">
-          <img data-placeholder="true" src="https://images.unsplash.com/photo-1676917824872-83f2fa04898b?w=800&h=500&fit=crop&auto=format" alt="Rótulo luminoso">
+          <div class="foto-clip">
+            <img data-placeholder="true" src="https://images.unsplash.com/photo-1676917824872-83f2fa04898b?w=800&h=500&fit=crop&auto=format" alt="Rótulo luminoso">
+          </div>
           <div class="badge">A</div>
         </div>
         <div class="info">
@@ -516,10 +522,12 @@
       </div>
 
       <div class="sol-card" id="rotulacion-card">
-        <div class="foto foto-carrusel">
-          <img data-real="true" class="carrusel-img is-active" src="assets/fotos/04_rotulacion_1.png" alt="Rotulación de vehículos — furgoneta Rhea Apliven, vista trasera">
-          <img data-real="true" class="carrusel-img" src="assets/fotos/04_rotulacion_2.png" alt="Rotulación de vehículos — furgoneta Rhea Apliven, lateral">
-          <img data-real="true" class="carrusel-img" src="assets/fotos/04_rotulacion_3.png" alt="Rotulación de vehículos — furgoneta Rhea Apliven, lateral">
+        <div class="foto">
+          <div class="foto-clip foto-carrusel">
+            <img data-real="true" class="carrusel-img is-active" src="assets/fotos/04_rotulacion_1.png" alt="Rotulación de vehículos — furgoneta Rhea Apliven, vista trasera">
+            <img data-real="true" class="carrusel-img" src="assets/fotos/04_rotulacion_2.png" alt="Rotulación de vehículos — furgoneta Rhea Apliven, lateral">
+            <img data-real="true" class="carrusel-img" src="assets/fotos/04_rotulacion_3.png" alt="Rotulación de vehículos — furgoneta Rhea Apliven, lateral">
+          </div>
           <div class="badge">🚐</div>
         </div>
         <div class="info">
@@ -531,7 +539,9 @@
 
       <div class="sol-card" id="impresion-card">
         <div class="foto">
-          <img data-real="true" src="assets/fotos/05_impresion_digital.jpg" alt="Impresión digital de gran formato a todo color">
+          <div class="foto-clip">
+            <img data-real="true" src="assets/fotos/05_impresion_digital.jpg" alt="Impresión digital de gran formato a todo color">
+          </div>
           <div class="badge">🖨</div>
         </div>
         <div class="info">
@@ -543,7 +553,9 @@
 
       <div class="sol-card" id="vinilos-card">
         <div class="foto">
-          <img data-placeholder="true" src="https://images.unsplash.com/photo-1746021375306-9dec0f637732?w=800&h=500&fit=crop&auto=format" alt="Vinilos decorativos para oficinas">
+          <div class="foto-clip">
+            <img data-placeholder="true" src="https://images.unsplash.com/photo-1746021375306-9dec0f637732?w=800&h=500&fit=crop&auto=format" alt="Vinilos decorativos para oficinas">
+          </div>
           <div class="badge">▦</div>
         </div>
         <div class="info">
